@@ -11,3 +11,12 @@ NOTE: once tunnel stablished, atacker may run on his computer following command:
 ```sh
 $ ssh localhost -p [remote_port_setted_on_script] -i [path_to_private_rsa_key]
 ```
+
+#### Threat
+Trusting on foreign apps without a previous inspection of what are we running.
+
+#### How to avoid it
+Just by checking what we install and what does the .sh we run do. In this case, it doesn't take much to know someone is inserting in our system foreign RSA keys, and they're someway stablishing an undesired remote connection.
+
+**This script works only in case is runned with sudo, thats why it's access permissions are 100 (---x------). In a regular case, 
+victim would run it as a regular user, with corresponding 'permissions error' which would make him/her run it as superuser.**
