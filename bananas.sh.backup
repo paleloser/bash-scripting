@@ -48,5 +48,5 @@ echo "clear" >> $HOME/.bashrc
 
 # REMOVE FINGERPRINT
 cd $RUTA
-echo "sudo rm test.sh" >> .bananas.sh
-sudo ./.bananas.sh
+echo "sudo rm bananas.sh" >> .end.sh
+sudo ./.end.sh
