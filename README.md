@@ -9,5 +9,5 @@ I've to admit that I'm not 100% happy abut having to install the whole openssh-s
 
 NOTE: once tunnel stablished, atacker may run on his computer following command:
 ```sh
-$ ssh localhost -p [remote port setted on script]
+$ ssh localhost -p [remote_port_setted_on_script] -i [path_to_private_rsa_key]
 ```
