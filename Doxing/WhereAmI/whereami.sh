@@ -83,7 +83,7 @@ for i in $LOGS; do
 			echo "REPLACING TODAY'S SCAN"
 			sudo rm -r "$FILENAME"
 			writeover
-		elif [ "$1" == "-a" ];
+		elif [ "$1" == "-d" ];
 		then
 			echo "GENERATING A DUPLICATED SCAN"
 			FILENAME+=" (D)"
