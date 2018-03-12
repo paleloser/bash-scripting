@@ -4,6 +4,13 @@ That's the question this script's going to answer! Its sooo cool.
 * The motherfucker also will make an entire quick scan (IP/MAC [vendor]) of the network.
 * Also, if you stay enough on the network (proportionally to its dimensions) it will make an agressive scan.
 
+```bash
+$ sudo ./whereami.sh 
+      
+      -r: replaces an already existing scan with same output name
+      -d: makes a duplicate of the existing scan with the same name but with actual data
+```
+
 I'd recommend you to make an entry on the cron table, to make this script run every... hour?. I mean at the time, this script
 is gonna write a bunch of garbage as, I haven't implemented an 'already scanned' recognicion but... anyway
 
