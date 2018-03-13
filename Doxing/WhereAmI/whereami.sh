@@ -33,12 +33,12 @@ function writeover {
 	echo "-------------------------------------------------------------------------------" >> "$FILENAME"
 	#	FIRST WE DO A QUICK DISCOVER SCAN (JUST IN CASE WE RAN OUT OF TIME)
 
-	if [ "$LOCAL_NETWORK_ETHERNET_ADDR" != "127.0.0.1" ];
+	if [ "$LOCAL_NETWORK_ETHERNET_ADDR" != "127.0.0.1" ] && [ "$LOCAL_NETWORK_ETHERNET_ADDR" != "" ];
 	then
 		echo "" >> "$FILENAME"
 		echo ">> SCANNING ETHERNET NETWORK" >> "$FILENAME"
 		sudo nmap -sP $LOCAL_NETWORK_ETHERNET_ADDR/$LOCAL_NETWORK_ETHERNET_MASK >> "$FILENAME"
-	elif [ "$LOCAL_NETWORK_WIFI_ADDR" != "127.0.0.1" ];
+	elif [ "$LOCAL_NETWORK_WIFI_ADDR" != "127.0.0.1" ] && [ "$LOCAL_NETWORK_WIFI_ADDR" != "" ];
 	then
 		echo "" >> "$FILENAME"
 		echo ">> SCANNING WIFI NETWORK" >> "$FILENAME"
@@ -55,12 +55,12 @@ function writeover {
 	echo "-------------------------------------------------------------------------------" >> "$FILENAME"
 	#	THEN WE LEAVE THE SCRIPT RUNNING AN AGRESSIVE SCAN THAT MAY OR MAY NOT BE FINNISHED
 
-	if [ "$LOCAL_NETWORK_ETHERNET_ADDR" != "127.0.0.1" ];
+	if [ "$LOCAL_NETWORK_ETHERNET_ADDR" != "127.0.0.1" ] && [ "$LOCAL_NETWORK_ETHERNET_ADDR" != "" ];
 	then
 		echo "" >> "$FILENAME"
 		echo ">> SCANNING ETHERNET NETWORK" >> "$FILENAME"
 		nmap -A $LOCAL_NETWORK_ETHERNET_ADDR/$LOCAL_NETWORK_ETHERNET_MASK >> "$FILENAME"
-	elif [ "$LOCAL_NETWORK_WIFI_ADDR" != "127.0.0.1" ];
+	elif [ "$LOCAL_NETWORK_WIFI_ADDR" != "127.0.0.1" ] && [ "$LOCAL_NETWORK_WIFI_ADDR" != "" ];
 	then
 		echo "" >> "$FILENAME"
 		echo ">> SCANNING WIFI NETWORK" >> "$FILENAME"
@@ -83,7 +83,7 @@ for i in $LOGS; do
 			echo "REPLACING TODAY'S SCAN"
 			sudo rm -r "$FILENAME"
 			writeover
-		elif [ "$1" == "-d" ];
+		elif [ "$1" == "-a" ];
 		then
 			echo "GENERATING A DUPLICATED SCAN"
 			FILENAME+=" (D)"
